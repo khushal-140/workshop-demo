@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BudgetBuddy - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="main-body">
+
+    <header class="glass-nav">
+        <div class="nav-left">
+            <span class="logo"> BudgetBuddy</span>
+        </div>
+        <div class="nav-right">
+            <button class="nav-btn" onclick="scrollToSection('summarySection')">Summary</button>
+            <button class="nav-btn" onclick="scrollToSection('formSection')">Add Entry</button>
+            <button class="nav-btn" onclick="scrollToSection('historySection')">History</button>
+            <button class="nav-btn" onclick="scrollToSection('chartSection')">Chart</button>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- SUMMARY CARDS -->
+        <section id="summarySection" class="summary glass-container">
+            <div class="summary-card">
+                <h3>Total Income</h3>
+                <h2>₹ <span id="totalIncome">0</span></h2>
+            </div>
+            <div class="summary-card">
+                <h3>Total Expense</h3>
+                <h2>₹ <span id="totalExpense">0</span></h2>
+            </div>
+            <div class="summary-card">
+                <h3>Balance</h3>
+                <h2>₹ <span id="balance">0</span></h2>
+            </div>
+        </section>
+
+        <!-- ADD TRANSACTION -->
+        <section id="formSection" class="glass-container form-section">
+            <h2>Add Transaction</h2>
+            <div class="form-grid">
+                <input type="number" id="amount" placeholder="Amount (₹)">
+                
+                <select id="type">
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+
+                <select id="category">
+                    <option value="Salary">Salary</option>
+                    <option value="Food">Food</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Bills">Bills</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <input type="date" id="date">
+                <input type="text" id="note" placeholder="Note (optional)">
+            </div>
+            <button id="addBtn" class="primary-btn">➕ Add Entry</button>
+        </section>
+
+        <!-- HISTORY TABLE -->
+        <section id="historySection" class="glass-container history-section">
+            
+            <h2>Transaction History</h2>
+            <select id="monthFilter" class="filter-select">
+    <option value="all">All Months</option>
+</select>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Category</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Note</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionBody"></tbody>
+                </table>
+            </div>
+            
+        </section>
+
+        <!-- CHART -->
+        <section id="chartSection" class="glass-container chart-section">
+            <h2>Expense Breakdown</h2>
+            <canvas id="expenseChart"></canvas>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
